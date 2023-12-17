@@ -1,0 +1,107 @@
+# version: '3.8'
+# services:
+#   appseed-app:
+#     container_name: appseed_app
+#     restart: always
+#     env_file: .env
+#     build: .
+#     networks:
+#       - db_network
+#       - web_network
+#   nginx:
+#     container_name: nginx
+#     restart: always
+#     image: "nginx:latest"
+#     ports:
+#       - "5085:5085"
+#     volumes:
+#       - ./nginx:/etc/nginx/conf.d
+#     networks:
+#       - web_network
+#     depends_on: 
+#       - appseed-app
+# networks:
+#   db_network:
+#     driver: bridge
+#   web_network:
+#     driver: bridge
+ 
+
+# # version: '3.8'
+# # services:
+# #   mongo:
+# #     container_name: mongo
+# #     image: mongo:latest
+# #     ports:
+# #       - "27017:27017"
+# #     volumes:
+# #       - mongo_data:/data/db
+# #     networks:
+# #       - db_network
+# #   appseed-app:
+# #     container_name: appseed_app
+# #     restart: always
+# #     env_file: .env
+# #     build: .
+# #     networks:
+# #       - db_network
+# #       - web_network
+# #     depends_on:
+# #       - mongo
+# #   nginx:
+# #     container_name: nginx
+# #     restart: always
+# #     image: "nginx:latest"
+# #     ports:
+# #       - "5085:5085"
+# #     volumes:
+# #       - ./nginx:/etc/nginx/conf.d
+# #     networks:
+# #       - web_network
+# #     depends_on: 
+# #       - appseed-app
+  
+
+# # networks:
+# #   db_network:
+# #     driver: bridge
+# #   web_network:
+# #     driver: bridge
+
+# # volumes:
+# #   mongo_data:
+
+version: '3.8'
+
+services:
+  mymongo:
+    image: mongo
+    container_name: mymongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - mynetwork
+
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Replace with your actual Dockerfile name if different
+    container_name: myappcnt
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mymongo
+    env_file:
+      - .env
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  mongo_data:
+
