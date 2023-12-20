@@ -30,7 +30,7 @@ ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets')
 ALLOWED_HOSTS        = ['localhost', 'localhost:85', '127.0.0.1',               env('SERVER', default='127.0.0.1') ]
 CSRF_TRUSTED_ORIGINS = ['http://localhost:85', 'http://127.0.0.1', 'https://' + env('SERVER', default='127.0.0.1') ]
 ALLOWED_HOSTS.append('13.233.165.172')
-ALLOWED_HOSTS.append('ec2-13-233-165-172.ap-south-1.compute.amazonaws.com')
+ALLOWED_HOSTS.append('ec2-13-232-184-233.ap-south-1.compute.amazonaws.com')
 
 # Application definition
 

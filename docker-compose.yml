@@ -72,7 +72,6 @@
 # #   mongo_data:
 
 version: '3.8'
-
 services:
   mymongo:
     image: mongo
